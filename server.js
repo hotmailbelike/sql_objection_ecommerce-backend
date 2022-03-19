@@ -19,8 +19,9 @@ knex
 Model.knex(knex);
 
 // import routes
-// import restaurantRoutes from './routes/restaurant.routes';
 const userRoutes = require('./routes/user.routes');
+const productRoutes = require('./routes/product.routes');
+const orderRoutes = require('./routes/order.routes');
 
 const server = express();
 
@@ -31,15 +32,16 @@ server.use(express.urlencoded({ extended: true }));
 // initiate routes
 // home
 server.get('/', (request, response) => {
-	response.redirect('/api/restaurant');
+	response.redirect('/api/product');
 });
 
-// server.use('/', restaurantRoutes);
 server.use('/', userRoutes);
+server.use('/', productRoutes);
+server.use('/', orderRoutes);
 
 // 404
 server.use((request, response) => {
-	response.status(404).send('<h1>404</h1>Page Not Found :(');
+	response.status(404).send('<h1>404</h1>API does not exist :(</h1>');
 });
 
 const port = parseInt(process.env.PORT, 10) || 5000;
