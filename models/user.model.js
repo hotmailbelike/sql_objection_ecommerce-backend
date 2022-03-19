@@ -49,7 +49,7 @@ class User extends Model {
 						required: ['name', 'price', 'quantity'],
 						properties: {
 							name: { type: 'string' },
-							price: { type: 'number' },
+							price: { type: 'number' }, //quantity * product.price
 							quantity: { type: 'number', default: 0 },
 						},
 					},
@@ -59,7 +59,7 @@ class User extends Model {
 	}
 
 	static get relationMappings() {
-		const Order = require('./order');
+		const Order = require('./order.model');
 
 		return {
 			orders: {
