@@ -40,6 +40,7 @@ class Order extends Model {
 				category: { type: 'string' },
 				rating: { type: 'number' },
 				price: { type: 'number' },
+				isPublished: { type: 'boolean', default: true },
 				createdAt: { type: 'string' },
 				updatedAt: { type: 'string' },
 			},
