@@ -32,7 +32,7 @@ class User extends Model {
 	static get jsonSchema() {
 		return {
 			type: 'object',
-			required: ['name', 'email'],
+			required: ['name', 'email', 'password'],
 			properties: {
 				id: { type: 'integer' },
 				name: { type: 'string', minLength: 1, maxLength: 255 },
@@ -41,12 +41,15 @@ class User extends Model {
 				isAdmin: { type: 'boolean', default: false },
 				createdAt: { type: 'string' },
 				updatedAt: { type: 'string' },
+				order_ids: [{ type: 'integer' }],
+				// need to figure out how to ref to an array of product ids
 				cartItems: [
 					{
 						type: 'object',
-						required: ['name', 'quantity'],
+						required: ['name', 'price', 'quantity'],
 						properties: {
 							name: { type: 'string' },
+							price: { type: 'number' },
 							quantity: { type: 'number', default: 0 },
 						},
 					},
@@ -63,8 +66,8 @@ class User extends Model {
 				relation: Model.HasManyRelation,
 				modelClass: Order,
 				join: {
-					from: 'users.id',
-					to: 'orders.ordered_by_user_id',
+					from: 'users.order_ids',
+					to: 'orders.id',
 				},
 			},
 		};

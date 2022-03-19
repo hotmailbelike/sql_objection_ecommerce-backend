@@ -1,3 +1,5 @@
+const dotenv = require('dotenv');
+dotenv.config();
 const express = require('express');
 const { Model } = require('objection');
 
@@ -18,7 +20,7 @@ Model.knex(knex);
 
 // import routes
 // import restaurantRoutes from './routes/restaurant.routes';
-// import userRoutes from './routes/user.routes';
+const userRoutes = require('./routes/user.routes');
 
 const server = express();
 
@@ -33,7 +35,7 @@ server.get('/', (request, response) => {
 });
 
 // server.use('/', restaurantRoutes);
-// server.use('/', userRoutes);
+server.use('/', userRoutes);
 
 // 404
 server.use((request, response) => {

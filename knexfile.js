@@ -11,9 +11,9 @@ module.exports = {
 		migrations: {
 			directory: __dirname + '/db/migrations',
 		},
-		// seeds: {
-		//   directory: __dirname + '/db/seeds/development'
-		// },
+		seeds: {
+			directory: __dirname + '/seeds',
+		},
 		// pool: {
 		// 	afterCreate: (conn, cb) => {
 		// 		conn.run('PRAGMA foreign_keys = ON', cb);

@@ -2,7 +2,7 @@ const { Model } = require('objection');
 
 class Order extends Model {
 	static get tableName() {
-		return 'orders';
+		return 'products';
 	}
 
 	$beforeInsert() {
@@ -25,17 +25,21 @@ class Order extends Model {
 	static get ratingColumn() {
 		return 'rating';
 	}
+	static get priceColumn() {
+		return 'price';
+	}
 
 	static get jsonSchema() {
 		return {
 			type: 'object',
-			required: ['name'],
+			required: ['name', 'price'],
 			properties: {
 				id: { type: 'integer' },
 				name: { type: 'string', minLength: 1, maxLength: 255 },
 				type: { type: 'string' },
 				category: { type: 'string' },
 				rating: { type: 'number' },
+				price: { type: 'number' },
 				createdAt: { type: 'string' },
 				updatedAt: { type: 'string' },
 			},
